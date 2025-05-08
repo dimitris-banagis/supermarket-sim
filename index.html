@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supermarket Sim Deluxe Edition</title>
+  <style>
+    body { font-family: sans-serif; margin: 0; padding: 0; background: #e8f5e9; }
+    header { background: #2e7d32; color: white; padding: 20px; text-align: center; font-size: 28px; }
+    .store { display: flex; flex-wrap: wrap; justify-content: center; padding: 20px; }
+    .item { background: white; border: 1px solid #ccc; border-radius: 10px; margin: 10px; padding: 20px; width: 200px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .item img { width: 100%; height: auto; border-radius: 8px; }
+    .item h3 { margin: 10px 0 5px; }
+    .item p { margin: 5px 0; }
+    .item button { margin-top: 10px; background: #388e3c; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; width: 100%; }
+    .item button:hover { background: #2e7d32; }
+    footer { text-align: center; padding: 15px; background: #a5d6a7; color: #2e7d32; }
+    .cart { position: fixed; top: 20px; right: 20px; background: #ffffff; padding: 15px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2); }
+  </style>
+</head>
+<body>
+  <header>🛒 Supermarket Sim Deluxe Edition</header>
+
+  <div class="cart" id="cart">Καλάθι: 0 προϊόντα</div>
+
+  <div class="store" id="store"></div>
+
+  <footer>
+    Δημιουργήθηκε από τον Δημήτρη Μπαναγή | Deluxe Έκδοση ✨
+  </footer>
+
+  <script>
+    const products = [
+      { name: "Γάλα", price: 1.5, img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Milk_glass.jpg/320px-Milk_glass.jpg" },
+      { name: "Ψωμί", price: 1.2, img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Bread.jpg/320px-Bread.jpg" },
+      { name: "Μήλα", price: 2.0, img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_Apple.jpg/320px-Red_Apple.jpg" },
+      { name: "Τυρί", price: 3.4, img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Cheese.jpg/320px-Cheese.jpg" },
+      { name: "Μακαρόνια", price: 1.8, img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Pasta_2006_2.jpg/320px-Pasta_2006_2.jpg" },
+      { name: "Χυμός Πορτοκάλι", price: 2.5, img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Orange_juice_1.jpg/320px-Orange_juice_1.jpg" }
+    ];
+
+    const store = document.getElementById("store");
+    const cart = document.getElementById("cart");
+    let cartCount = 0;
+
+    products.forEach(p => {
+      const item = document.createElement("div");
+      item.className = "item";
+      item.innerHTML = `
+        <img src="${p.img}" alt="${p.name}">
+        <h3>${p.name}</h3>
+        <p>Τιμή: €${p.price.toFixed(2)}</p>
+        <button onclick="addToCart()">Προσθήκη στο καλάθι</button>
+      `;
+      store.appendChild(item);
+    });
+
+    function addToCart() {
+      cartCount++;
+      cart.textContent = `Καλάθι: ${cartCount} προϊόντα`;
+    }
+  </script>
+</body>
+</html>
